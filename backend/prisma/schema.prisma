@@ -38,7 +38,7 @@ model User {
 
 model Address {
   id Int @id @default(autoincrement())
-  userId Int @map("user_id") //.
+  userId Int @map("user_id")
   recipientName String @map("recipient_name") // 수령인
   phone String
   postalCode String @map("postal_code")
