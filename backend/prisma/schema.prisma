@@ -1,0 +1,131 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum OrderStatus {
+  PENDING     // 주문 대기 중
+  PROCESSING  // 처리 중
+  COMPLETED   // 모든 제품 배송 완료
+  CANCELLED   // 취소
+}
+
+enum ShippingStatus {
+  PENDING     // 배송 대기 중
+  SHIPPED     // 배송 중
+  DELIVERED   // 배송 완료
+}
+
+enum CartItemStatus {
+  ACTIVE // 장바구니에 담김
+  REMOVED // 사용자가 직접 삭제
+  SOLD_OUT // 품절
+  ORDERED // 주문 완료 후 장바구니 비활성화
+}
+
+model User {
+  id  Int @id @default(autoincrement())
+  email String @unique
+  password String
+  name String
+
+  cart Cart?
+}
+
+model Address {
+  id Int @id @default(autoincrement())
+  userId Int @map("user_id") //.
+  recipientName String @map("recipient_name") // 수령인
+  phone String
+  postalCode String @map("postal_code")
+  address1 String // 기본주소
+  address2 String // 상세주소
+  isDefault Boolean @map("is_default")
+  createdAt DateTime @map("created_at")
+  updatedAt DateTime @map("updated_at")
+}
+
+model Review {
+  id Int @id @default(autoincrement())
+}
+
+model Product {
+  id Int @id @default(autoincrement())
+  categoryId Int @map("category_id") @unique
+  name String
+  price Decimal @db.Decimal(10, 2)
+  description String @db.VarChar(1000) 
+  stock Int @default(0)
+  company String
+  isSale Boolean @map("is_sale") @default(true)
+  image String? @db.VarChar(255)
+  releaseDate DateTime @map("release_date")
+  createdAt DateTime @map("created_at")
+  updatedAt DateTime @map("updated_at")
+  deletedAt DateTime @map("deleted_at")
+
+  orderProducts OrderProduct[]
+  cartItem CartItem[]
+}
+
+model Category {
+  id Int @id @default(autoincrement())
+  name String
+}
+
+model Order {
+  id Int @id @default(autoincrement())
+  userId Int @map("user_id")
+  status OrderStatus @default(PENDING)
+  createdAt DateTime @map("created_at")
+  updatedAt DateTime @map("updated_at")
+  deletedAt DateTime? @map("deleted_at")
+
+  orderProducts OrderProduct[]
+}
+
+model OrderProduct {
+  id Int @id @default(autoincrement())
+  userId Int @map("user_id")
+  orderId Int @map("order_id")
+  productId Int @map("product_id")
+  categoryId Int @map("category_id")
+  quantity Int
+  shippingStatus ShippingStatus @map("shipping_status") @default(PENDING)
+  createdAt DateTime @map("created_at")
+  updatedAt DateTime @map("updated_at")
+  deletedAt DateTime? @map("deleted_at")
+
+  order Order @relation(fields: [orderId], references: [id])
+  product Product @relation(fields: [productId], references: [id])
+}
+
+model Cart {
+  id Int @id @default(autoincrement())
+  userId Int @map("user_id") @unique
+  createdAt DateTime @map("created_at")
+  updatedAt DateTime @map("updated_at")
+
+  user User @relation(fields: [userId], references: [id])
+  cartItems CartItem[]
+}
+ 
+model CartItem {
+  id Int @id @default(autoincrement())
+  cartId Int
+  userId Int
+  productId Int
+  categoryId Int
+  quantity Int
+  price Decimal @db.Decimal(10, 2)
+  createdAt DateTime
+  updatedAt DateTime
+  
+  cart Cart @relation(fields: [cartId], references: [id])
+  product Product @relation(fields: [productId], references: [id])
+}
+
