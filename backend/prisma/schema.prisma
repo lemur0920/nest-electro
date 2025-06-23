@@ -7,144 +7,147 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-enum OrderStatus {
-  PENDING     // 주문 대기 중
-  PROCESSING  // 처리 중
-  COMPLETED   // 모든 제품 배송 완료
-  CANCELLED   // 취소
-}
-
-enum ShippingStatus {
-  PENDING     // 배송 대기 중
-  SHIPPED     // 배송 중
-  DELIVERED   // 배송 완료
-}
-
-enum CartItemStatus {
-  ACTIVE // 장바구니에 담김
-  REMOVED // 사용자가 직접 삭제
-  SOLD_OUT // 품절
-  ORDERED // 주문 완료 후 장바구니 비활성화
-}
-
 model User {
-  id  Int @id @default(autoincrement())
-  email String @unique
-  password String
-  name String
-
-  cart Cart?
-  reviews Review[]
+  id        Int       @id @default(autoincrement())
+  email     String    @unique
+  password  String
+  name      String
   addresses Address[]
+  cart      Cart?
+  reviews   Review[]
+
+  createdAt     DateTime @default(now())      @map("created_at")
+  updatedAt     DateTime @default(now()) @updatedAt @map("updated_at")
+  deletedAt     DateTime?       @map("deleted_at")
 }
 
 model Address {
-  id Int @id @default(autoincrement())
-  userId Int @map("user_id")
-  recipientName String @map("recipient_name") // 수령인
-  phone String
-  postalCode String @map("postal_code")
-  address1 String // 기본주소
-  address2 String // 상세주소
-  isDefault Boolean @map("is_default")
-  createdAt DateTime @map("created_at")
-  updatedAt DateTime @map("updated_at")
+  id            Int      @id @default(autoincrement())
+  userId        Int      @map("user_id")
+  recipientName String   @map("recipient_name")
+  phone         String
+  postalCode    String   @map("postal_code")
+  address1      String
+  address2      String
+  isDefault     Boolean  @map("is_default")
+  createdAt     DateTime @default(now()) @map("created_at")
+  updatedAt     DateTime @default(now()) @updatedAt @map("updated_at")
+  deletedAt DateTime? @map("deleted_at")
 
-  user User @relation(fields: [userId], references: [id])
+  user          User     @relation(fields: [userId], references: [id])
 }
 
 model Review {
-  id Int @id @default(autoincrement())
-  userId Int @map("user_id")
-  productId Int 
+  id         Int      @id @default(autoincrement())
+  userId     Int      @map("user_id")
+  productId  Int
   categoryId Int
-  rating Int 
-  content String @db.VarChar(1000)
-  createdAt DateTime @map("created_at")
-  updatedAt DateTime @map("updatedAt")
+  rating     Int
+  content    String   @db.VarChar(1000)
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @default(now()) @updatedAt @map("updated_at")
+  deletedAt DateTime @map("deleted_at")
 
-  user User @relation(fields: [userId], references: [id])
-  product Product @relation(fields: [productId], references: [id])
+  product    Product  @relation(fields: [productId], references: [id])
+  user       User     @relation(fields: [userId], references: [id])
 }
 
 model Product {
-  id Int @id @default(autoincrement())
-  categoryId Int @map("category_id")
-  name String
-  price Decimal @db.Decimal(10, 2)
-  description String @db.VarChar(1000) 
-  stock Int @default(0)
-  company String
-  isSale Boolean @map("is_sale") @default(true)
-  image String? @db.VarChar(255)
-  releaseDate DateTime @map("release_date")
-  createdAt DateTime @map("created_at")
-  updatedAt DateTime @map("updated_at")
-  deletedAt DateTime @map("deleted_at")
+  id            Int            @id @default(autoincrement())
+  categoryId    Int            @map("category_id")
+  name          String
+  price         Decimal        @db.Decimal(10, 2)
+  description   String         @db.VarChar(1000)
+  stock         Int            @default(0)
+  company       String
+  isSale        Boolean        @default(true) @map("is_sale")
+  image         String?        @db.VarChar(255)
+  releaseDate   DateTime       @map("release_date")
+  
+  createdAt     DateTime       @default(now()) @map("created_at")
+  updatedAt     DateTime       @default(now()) @updatedAt @map("updated_at")
+deletedAt     DateTime?        @map("deleted_at")
 
-  reviews Review[]
+  cartItems     CartItem[]
   orderProducts OrderProduct[]
-  cartItems CartItem[]
-
-  category Category @relation(fields: [categoryId], references: [id])
+  category      Category       @relation(fields: [categoryId], references: [id])
+  reviews       Review[]
 }
 
 model Category {
-  id Int @id @default(autoincrement())
-  name String
-
+  id       Int       @id @default(autoincrement())
+  name     String
   products Product[]
 }
 
 model Order {
-  id Int @id @default(autoincrement())
-  userId Int @map("user_id")
-  status OrderStatus @default(PENDING)
-  createdAt DateTime @map("created_at")
-  updatedAt DateTime @map("updated_at")
-  deletedAt DateTime? @map("deleted_at")
-
+  id            Int            @id @default(autoincrement())
+  userId        Int            @map("user_id")
+  status        OrderStatus    @default(PENDING)
+  createdAt     DateTime       @default(now()) @map("created_at")
+  updatedAt     DateTime       @default(now()) @updatedAt @map("updated_at")
+  deletedAt     DateTime?      @map("deleted_at")
   orderProducts OrderProduct[]
 }
 
 model OrderProduct {
-  id Int @id @default(autoincrement())
-  userId Int @map("user_id")
-  orderId Int @map("order_id")
-  productId Int @map("product_id")
-  categoryId Int @map("category_id")
-  quantity Int
-  shippingStatus ShippingStatus @map("shipping_status") @default(PENDING)
-  createdAt DateTime @map("created_at")
-  updatedAt DateTime @map("updated_at")
-  deletedAt DateTime? @map("deleted_at")
+  id             Int            @id @default(autoincrement())
+  userId         Int            @map("user_id")
+  orderId        Int            @map("order_id")
+  productId      Int            @map("product_id")
+  categoryId     Int            @map("category_id")
+  quantity       Int
+  shippingStatus ShippingStatus @default(PENDING) @map("shipping_status")
+  createdAt      DateTime       @default(now()) @map("created_at")
+  updatedAt      DateTime       @default(now()) @updatedAt @map("updated_at")
+  deletedAt      DateTime?      @map("deleted_at")
 
-  order Order @relation(fields: [orderId], references: [id])
-  product Product @relation(fields: [productId], references: [id])
+  order          Order          @relation(fields: [orderId], references: [id])
+  product        Product        @relation(fields: [productId], references: [id])
 }
 
 model Cart {
-  id Int @id @default(autoincrement())
-  userId Int @map("user_id") @unique
-  createdAt DateTime @map("created_at")
-  updatedAt DateTime @map("updated_at")
-
-  user User @relation(fields: [userId], references: [id])
+  id        Int        @id @default(autoincrement())
+  userId    Int        @unique @map("user_id")
+  createdAt DateTime   @default(now()) @map("created_at")
+  updatedAt DateTime   @default(now()) @updatedAt @map("updated_at")
+  deletedAt DateTime?  @map("deleted_at")
+  user      User       @relation(fields: [userId], references: [id])
   cartItems CartItem[]
 }
- 
+
 model CartItem {
-  id Int @id @default(autoincrement())
-  cartId Int
-  userId Int
-  productId Int
+  id         Int      @id @default(autoincrement())
+  cartId     Int
+  userId     Int
+  productId  Int
   categoryId Int
-  quantity Int
-  price Decimal @db.Decimal(10, 2)
-  createdAt DateTime
-  updatedAt DateTime
+  quantity   Int
+  price      Decimal  @db.Decimal(10, 2)
   
-  cart Cart @relation(fields: [cartId], references: [id])
-  product Product @relation(fields: [productId], references: [id])
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @default(now()) @updatedAt @map("updated_at")
+
+  cart       Cart     @relation(fields: [cartId], references: [id])
+  product    Product  @relation(fields: [productId], references: [id])
 }
 
+enum OrderStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  CANCELLED
+}
+
+enum ShippingStatus {
+  PENDING
+  SHIPPED
+  DELIVERED
+}
+
+enum CartItemStatus {
+  ACTIVE
+  REMOVED
+  SOLD_OUT
+  ORDERED
+}

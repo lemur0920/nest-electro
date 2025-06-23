@@ -37,31 +37,46 @@ async function main() {
         id: 1,
         email: 'gamer@example.com',
         password: hashedPassword,
-        name: '김게이머'
+        name: '김게이머',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        deletedAt: null
       },
       {
         id: 2,
         email: 'developer@example.com',
         password: hashedPassword,
-        name: '박개발자'
+        name: '박개발자',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        deletedAt: null
       },
       {
         id: 3,
         email: 'designer@example.com',
         password: hashedPassword,
-        name: '이디자이너'
+        name: '이디자이너',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        deletedAt: null
       },
       {
         id: 4,
         email: 'streamer@example.com',
         password: hashedPassword,
-        name: '최스트리머'
+        name: '최스트리머',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        deletedAt: null
       },
       {
         id: 5,
         email: 'office@example.com',
         password: hashedPassword,
-        name: '정직장인'
+        name: '정직장인',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        deletedAt: null
       }
     ]
   });
@@ -78,7 +93,8 @@ async function main() {
         address2: '123-45 게이밍센터 501호',
         isDefault: true,
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
+        deletedAt: null
       },
       {
         userId: 2,
@@ -89,7 +105,8 @@ async function main() {
         address2: '678-90 IT타워 1201호',
         isDefault: true,
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
+        deletedAt: null
       },
       {
         userId: 3,
@@ -100,7 +117,8 @@ async function main() {
         address2: '111-22 디자인스튜디오 7층',
         isDefault: true,
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
+        deletedAt: null
       },
       {
         userId: 4,
@@ -111,7 +129,8 @@ async function main() {
         address2: '333-44 방송스튜디오 201호',
         isDefault: true,
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
+        deletedAt: null
       }
     ]
   });
@@ -133,7 +152,7 @@ async function main() {
         releaseDate: new Date('2023-08-15'),
         createdAt: new Date(),
         updatedAt: new Date(),
-        deletedAt: new Date('9999-12-31')
+        deletedAt: null
       },
       {
         id: 2,
@@ -148,7 +167,7 @@ async function main() {
         releaseDate: new Date('2023-06-20'),
         createdAt: new Date(),
         updatedAt: new Date(),
-        deletedAt: new Date('9999-12-31')
+        deletedAt: null
       },
       {
         id: 3,
@@ -163,7 +182,7 @@ async function main() {
         releaseDate: new Date('2023-04-10'),
         createdAt: new Date(),
         updatedAt: new Date(),
-        deletedAt: new Date('9999-12-31')
+        deletedAt: null
       },
 
       // 키보드
@@ -180,7 +199,7 @@ async function main() {
         releaseDate: new Date('2023-05-25'),
         createdAt: new Date(),
         updatedAt: new Date(),
-        deletedAt: new Date('9999-12-31')
+        deletedAt: null
       },
       {
         id: 5,
@@ -195,7 +214,7 @@ async function main() {
         releaseDate: new Date('2023-03-18'),
         createdAt: new Date(),
         updatedAt: new Date(),
-        deletedAt: new Date('9999-12-31')
+        deletedAt: null
       },
       {
         id: 6,
@@ -210,7 +229,7 @@ async function main() {
         releaseDate: new Date('2023-09-05'),
         createdAt: new Date(),
         updatedAt: new Date(),
-        deletedAt: new Date('9999-12-31')
+        deletedAt: null
       },
 
       // 헤드셋/이어폰
@@ -227,7 +246,7 @@ async function main() {
         releaseDate: new Date('2023-07-12'),
         createdAt: new Date(),
         updatedAt: new Date(),
-        deletedAt: new Date('9999-12-31')
+        deletedAt: null
       },
       {
         id: 8,
@@ -242,7 +261,7 @@ async function main() {
         releaseDate: new Date('2023-02-28'),
         createdAt: new Date(),
         updatedAt: new Date(),
-        deletedAt: new Date('9999-12-31')
+        deletedAt: null
       },
       {
         id: 9,
@@ -257,7 +276,7 @@ async function main() {
         releaseDate: new Date('2023-01-15'),
         createdAt: new Date(),
         updatedAt: new Date(),
-        deletedAt: new Date('9999-12-31')
+        deletedAt: null
       },
 
       // 마우스패드
@@ -274,7 +293,7 @@ async function main() {
         releaseDate: new Date('2023-01-01'),
         createdAt: new Date(),
         updatedAt: new Date(),
-        deletedAt: new Date('9999-12-31')
+        deletedAt: null
       },
       {
         id: 11,
@@ -289,7 +308,7 @@ async function main() {
         releaseDate: new Date('2023-02-14'),
         createdAt: new Date(),
         updatedAt: new Date(),
-        deletedAt: new Date('9999-12-31')
+        deletedAt: null
       },
 
       // 모니터
@@ -306,7 +325,7 @@ async function main() {
         releaseDate: new Date('2023-06-30'),
         createdAt: new Date(),
         updatedAt: new Date(),
-        deletedAt: new Date('9999-12-31')
+        deletedAt: null
       },
       {
         id: 13,
@@ -321,7 +340,7 @@ async function main() {
         releaseDate: new Date('2023-04-22'),
         createdAt: new Date(),
         updatedAt: new Date(),
-        deletedAt: new Date('9999-12-31')
+        deletedAt: null
       },
 
       // 웹캠
@@ -338,7 +357,7 @@ async function main() {
         releaseDate: new Date('2023-03-08'),
         createdAt: new Date(),
         updatedAt: new Date(),
-        deletedAt: new Date('9999-12-31')
+        deletedAt: null
       },
       {
         id: 15,
@@ -353,7 +372,7 @@ async function main() {
         releaseDate: new Date('2023-05-17'),
         createdAt: new Date(),
         updatedAt: new Date(),
-        deletedAt: new Date('9999-12-31')
+        deletedAt: null
       },
 
       // 스피커
@@ -370,7 +389,7 @@ async function main() {
         releaseDate: new Date('2023-08-03'),
         createdAt: new Date(),
         updatedAt: new Date(),
-        deletedAt: new Date('9999-12-31')
+        deletedAt: null
       },
 
       // 케이블/어댑터
@@ -387,7 +406,7 @@ async function main() {
         releaseDate: new Date('2023-01-20'),
         createdAt: new Date(),
         updatedAt: new Date(),
-        deletedAt: new Date('9999-12-31')
+        deletedAt: null
       },
       {
         id: 18,
@@ -402,7 +421,7 @@ async function main() {
         releaseDate: new Date('2023-02-05'),
         createdAt: new Date(),
         updatedAt: new Date(),
-        deletedAt: new Date('9999-12-31')
+        deletedAt: null
       }
     ]
   });
