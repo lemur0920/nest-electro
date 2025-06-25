@@ -46,7 +46,7 @@ model Review {
   content    String   @db.VarChar(1000)
   createdAt  DateTime @default(now()) @map("created_at")
   updatedAt  DateTime @default(now()) @updatedAt @map("updated_at")
-  deletedAt DateTime @map("deleted_at")
+  deletedAt DateTime? @map("deleted_at")
 
   product    Product  @relation(fields: [productId], references: [id])
   user       User     @relation(fields: [userId], references: [id])
@@ -66,7 +66,7 @@ model Product {
   
   createdAt     DateTime       @default(now()) @map("created_at")
   updatedAt     DateTime       @default(now()) @updatedAt @map("updated_at")
-deletedAt     DateTime?        @map("deleted_at")
+  deletedAt     DateTime?        @map("deleted_at")
 
   cartItems     CartItem[]
   orderProducts OrderProduct[]
