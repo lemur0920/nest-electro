@@ -28,23 +28,29 @@ export class UserService {
         email: newUser.email,
         name: newUser.name
       };
-    } catch (error ) {
+    } catch (error) {
       // Prisma unique constraint violated
       if (error.code === 'P2002') {
         const { errorCode, message, statusCode } = EXCEPTION_STATUS.USER.EMAIL_CONFLICT;
-        throw new CustomException(errorCode, message, statusCode)
+        throw new CustomException({errorCode, message, statusCode})
       }
     }
   }
-  async findUserById(userId: string) {
-    
+  async findUserById(userId: number) {
+    const user = await this.prisma.user.findUnique({
+      where: { id: userId }
+    })
+    if (!user) {
+      const { errorCode, message, statusCode } = EXCEPTION_STATUS.USER.NOT_FOUND;
+      throw new CustomException({ errorCode, message, statusCode });
+    }
   }
 
-  async updateUser(userId: string, updateData: any) {
+  async updateUser(userId: number, updateData: any) {
 
   }
 
-  async deleteUser(userId: string) {
+  async deleteUser(userId: number) {
 
   }
 }
