@@ -6,9 +6,10 @@ export class CreateUserDto {
   email: string
   
   @ApiProperty({ description: '사용자 이름', example: 'John Doe' })
-  @IsString()
+  @IsString() 
   name: string
 
+  
   @ApiProperty({ description: '비밀번호', example: 'password123' })
   @IsString()
   @MinLength(8)
