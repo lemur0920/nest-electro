@@ -628,7 +628,8 @@ async function main() {
         rating: 5,
         content: 'FPS 게임하기에 정말 완벽한 마우스입니다. 그립감이 좋고 센서 정확도도 뛰어나요. 적극 추천합니다!',
         createdAt: new Date(Date.now() - 4 * 24 * 60 * 60 * 1000),
-        updatedAt: new Date(Date.now() - 4 * 24 * 60 * 60 * 1000)
+        updatedAt: new Date(Date.now() - 4 * 24 * 60 * 60 * 1000),
+        deletedAt: null
       },
       {
         userId: 1,
@@ -637,7 +638,8 @@ async function main() {
         rating: 4,
         content: '음질이 정말 좋고 착용감도 편안합니다. 배터리 수명도 만족스러워요. 다만 가격이 조금 비싸긴 해요.',
         createdAt: new Date(Date.now() - 4 * 24 * 60 * 60 * 1000),
-        updatedAt: new Date(Date.now() - 4 * 24 * 60 * 60 * 1000)
+        updatedAt: new Date(Date.now() - 4 * 24 * 60 * 60 * 1000),
+        deletedAt: null
       },
       {
         userId: 2,
@@ -646,7 +648,8 @@ async function main() {
         rating: 5,
         content: '코딩할 때 타이핑 느낌이 정말 좋습니다. 백라이트도 자동으로 조절되어서 편리해요.',
         createdAt: new Date(Date.now() - 6 * 24 * 60 * 60 * 1000),
-        updatedAt: new Date(Date.now() - 6 * 24 * 60 * 60 * 1000)
+        updatedAt: new Date(Date.now() - 6 * 24 * 60 * 60 * 1000),
+        deletedAt: null
       },
       {
         userId: 3,
@@ -655,7 +658,8 @@ async function main() {
         rating: 5,
         content: '오디오 작업용으로 구매했는데 음질이 정말 뛰어납니다. 디테일한 소리까지 다 들려요.',
         createdAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000),
-        updatedAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000)
+        updatedAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000),
+        deletedAt: null
       },
       {
         userId: 4,
@@ -664,7 +668,8 @@ async function main() {
         rating: 4,
         content: '스트리밍 방송용으로 사용 중인데 화질이 선명하고 자동 초점도 빨라요. 조명 보정 기능이 특히 좋습니다.',
         createdAt: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000),
-        updatedAt: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000)
+        updatedAt: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000),
+        deletedAt: null
       },
       {
         userId: 5,
@@ -673,7 +678,8 @@ async function main() {
         rating: 4,
         content: '사무용으로 구매했는데 색감이 정확하고 눈이 덜 피로합니다. 높이 조절도 편리해요.',
         createdAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000),
-        updatedAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000)
+        updatedAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000),
+        deletedAt: null
       },
       {
         userId: 2,
@@ -682,7 +688,8 @@ async function main() {
         rating: 5,
         content: '노트북 확장용으로 완벽합니다. 모든 포트가 필요한 만큼 들어있고 발열도 거의 없어요.',
         createdAt: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000),
-        updatedAt: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000)
+        updatedAt: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000),
+        deletedAt: null
       },
       {
         userId: 3,
@@ -691,7 +698,8 @@ async function main() {
         rating: 5,
         content: '마우스 움직임이 정말 부드럽고 멈춤성도 좋습니다. 두께감이 있어서 손목이 편해요.',
         createdAt: new Date(Date.now() - 8 * 24 * 60 * 60 * 1000),
-        updatedAt: new Date(Date.now() - 8 * 24 * 60 * 60 * 1000)
+        updatedAt: new Date(Date.now() - 8 * 24 * 60 * 60 * 1000),
+        deletedAt: null
       }
     ]
   });
