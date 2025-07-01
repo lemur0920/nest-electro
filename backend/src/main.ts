@@ -2,8 +2,11 @@ import { NestFactory, Reflector } from '@nestjs/core';
 import { AppModule } from './app.module';
 import * as session from 'express-session';
 import { ClassSerializerInterceptor, ValidationPipe } from '@nestjs/common';
+
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  // Swagger 설정 추가
+  const config = new DocumentBuilder()
   await app.listen(3000);
   app.use(
     session({

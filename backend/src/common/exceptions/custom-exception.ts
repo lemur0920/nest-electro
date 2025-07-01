@@ -20,15 +20,16 @@ export const EXCEPTION_STATUS = {
       message: '해당 유저가 존재하지 않습니다.',
       statusCode: 404,
     },
+    CONFLICT: {
+      errorCode: 10003,
+      message: '이미 존재하는 유저입니다.',
+      statusCode: 409
+    }
   },
 }
 
 export class CustomException extends HttpException {
-  constructor(
-    public readonly errorCode: number,
-    public readonly message: string,
-    public readonly statusCode: number,
-  ) {
-    super({ errorCode, message }, statusCode);
+  constructor(exception: { errorCode: number, message: string, statusCode: number }) {
+    super({ errorCode: exception.errorCode, message: exception.message }, exception.statusCode);
   }
 }
