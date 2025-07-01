@@ -22,18 +22,14 @@ export const EXCEPTION_STATUS = {
     },
     EMAIL_CONFLICT: {
       errorCode: 10003,
-      message: '이미 존재하는 유저입니다..',
+      message: '이미 존재하는 유저입니다.',
       statusCode: 409,
     }
   },
 }
 
 export class CustomException extends HttpException {
-  constructor(
-    public readonly errorCode: number,
-    public readonly message: string,
-    public readonly statusCode: number,
-  ) {
-    super({ errorCode, message }, statusCode);
+  constructor(exception: { errorCode: number, message: string, statusCode: number }) {
+    super({ errorCode: exception.errorCode, message: exception.message }, exception.statusCode);
   }
 }
