@@ -20,6 +20,11 @@ export const EXCEPTION_STATUS = {
       message: '해당 유저가 존재하지 않습니다.',
       statusCode: 404,
     },
+    EMAIL_CONFLICT: {
+      errorCode: 10003,
+      message: '이미 존재하는 유저입니다..',
+      statusCode: 409,
+    }
   },
 }
 

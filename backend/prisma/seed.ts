@@ -34,7 +34,6 @@ async function main() {
   const users = await prisma.user.createMany({
     data: [
       {
-        id: 1,
         email: 'gamer@example.com',
         password: hashedPassword,
         name: '김게이머',
@@ -43,7 +42,6 @@ async function main() {
         deletedAt: null
       },
       {
-        id: 2,
         email: 'developer@example.com',
         password: hashedPassword,
         name: '박개발자',
@@ -52,7 +50,6 @@ async function main() {
         deletedAt: null
       },
       {
-        id: 3,
         email: 'designer@example.com',
         password: hashedPassword,
         name: '이디자이너',
@@ -61,7 +58,6 @@ async function main() {
         deletedAt: null
       },
       {
-        id: 4,
         email: 'streamer@example.com',
         password: hashedPassword,
         name: '최스트리머',
@@ -70,7 +66,6 @@ async function main() {
         deletedAt: null
       },
       {
-        id: 5,
         email: 'office@example.com',
         password: hashedPassword,
         name: '정직장인',
