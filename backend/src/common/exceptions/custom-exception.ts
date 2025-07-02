@@ -13,6 +13,11 @@ export const EXCEPTION_STATUS = {
       message: '토큰이 만료되었습니다.',
       statusCode: 401,
     },
+    INVALID_CREDENTIALS: {
+      errorCode: 10003,
+      message: '이메일 또는 비밀번호가 잘못되었습니다.',
+      statusCode: 401
+    }
   },
   USER: {
     NOT_FOUND: {

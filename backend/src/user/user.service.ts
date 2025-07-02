@@ -36,14 +36,25 @@ export class UserService {
       }
     }
   }
+  
   async findUserById(userId: number) {
     const user = await this.prisma.user.findUnique({
       where: { id: userId }
     })
     if (!user) {
-      const { errorCode, message, statusCode } = EXCEPTION_STATUS.USER.NOT_FOUND;
-      throw new CustomException({ errorCode, message, statusCode });
+      throw new CustomException(EXCEPTION_STATUS.USER.NOT_FOUND);
     }
+    return user;
+  }
+
+  async findByEmail(email: string) {
+    const user = await.this.prisma.user.findUnique({
+      where: { email: email }
+    })
+    if (!user) {
+      throw new CustomException(EXCEPTION_STATUS.USER.NOT_FOUND);
+    }
+    return user;
   }
 
   async updateUser(userId: number, updateData: any) {
