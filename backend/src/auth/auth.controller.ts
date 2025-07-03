@@ -12,6 +12,9 @@ export class AuthController {
     @Session() session: Record<string, any>
   ) {
     const user = await this.authService.validateUser(loginDto.email, loginDto.password);
+    if (user) {
+      session.userId = user.id;
+    }
     return user;
   }
 }
