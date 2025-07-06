@@ -1,6 +1,6 @@
 import { Injectable, OnModuleDestroy, OnModuleInit } from "@nestjs/common";
 import { PrismaClient } from "@prisma/client";
-import { UserCreateDto } from "src/user/dto/user-create.req.dto.ts";
+import { CreateUserDto } from "src/user/dto/create-user.req.dto.ts";
 
 @Injectable()
 export class PrismaService 
@@ -15,7 +15,7 @@ export class PrismaService
       })
     }
 
-    async createUser(userCreateDto: UserCreateDto) {
+    async createUser(userCreateDto: CreateUserDto) {
       return this.user.create({
         data: { 
           email: userCreateDto.email,

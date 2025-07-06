@@ -17,7 +17,14 @@ export const EXCEPTION_STATUS = {
       errorCode: 10003,
       message: '이메일 또는 비밀번호가 잘못되었습니다.',
       statusCode: 401
+    },
+    UNAUTHENTICATED: {
+      errorCode: 10004,
+      message: '로그인이 필요합니다.',
+      statusCode: 401
     }
+
+    
   },
   USER: {
     NOT_FOUND: {
@@ -29,7 +36,13 @@ export const EXCEPTION_STATUS = {
       errorCode: 10003,
       message: '이미 존재하는 유저입니다.',
       statusCode: 409,
-    }
+    },
+      INVALID_PASSWORD: {
+        errorCode: 10004,
+        message: '비밀번호를 확인해주세요.',
+        statusCode: 400
+      },
+      
   },
 }
 

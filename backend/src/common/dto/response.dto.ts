@@ -1,10 +1,11 @@
 export class ResponseDto<T> {
-  constructor(
-    private readonly message: string,
-    private readonly data?: T 
-  ) {}
+  message: string;
+  data: T
 
-  static success<T>(message: string, data?: T): ResponseDto<T> {
-    return new ResponseDto(message, data);
+  static success<T>(options: { message: string; data?: T }): ResponseDto<T> {
+    return {
+      message: options.message,
+      data: options.data
+    }
   }
 }

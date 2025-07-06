@@ -1,9 +1,11 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { PrismaService } from 'prisma/prisma.service';
 import { UserResponseDto } from './dto/user.res.dto';
-import { UserCreateDto } from './dto/user-create.req.dto.ts';
+import { CreateUserDto } from './dto/create-user.req.dto.ts';
+import { UpdateUserDto } from './dto/update-user.req.dto';
 import * as bcrypt from 'bcrypt';
 import { CustomException, EXCEPTION_STATUS } from 'src/common/exceptions/custom-exception';
+import { User } from '@prisma/client';
 
 @Injectable()
 export class UserService {
@@ -12,13 +14,13 @@ export class UserService {
     private prisma: PrismaService,
   ) {}
 
-  async createUser(userCreateDto: UserCreateDto): Promise<UserResponseDto> {
+  async createUser(createUserDto: CreateUserDto): Promise<UserResponseDto> {
     try {
-      const hashedPassword = await bcrypt.hash(userCreateDto.password, 10);
+      const hashedPassword = await bcrypt.hash(createUserDto.password, 10);
       const newUser = await this.prisma.user.create({
         data: {
-          email: userCreateDto.email,
-          name: userCreateDto.name,
+          email: createUserDto.email,
+          name: createUserDto.name,
           password: hashedPassword,
         }
       })
@@ -47,21 +49,55 @@ export class UserService {
     return user;
   }
 
-  async findByEmail(email: string) {
+  async findByEmail(email: string): Promise<User> {
     const user = await this.prisma.user.findUnique({
       where: { email: email }
     })
+
     if (!user) {
       throw new CustomException(EXCEPTION_STATUS.USER.NOT_FOUND);
     }
     return user;
   }
 
-  async updateUser(userId: number, updateData: any) {
-
+  async findAll(): Promise<UserResponseDto[]> {
+    const users = await this.prisma.user.findMany();
+    return users;
   }
 
-  async deleteUser(userId: number) {
+  async updateUser(userId: number, updateUserDto: UpdateUserDto): Promise<UserResponseDto> {
+    const updateData: Partial<UpdateUserDto> = {};
+    if (updateUserDto.name) {
+      updateData.name = updateUserDto.name
+    }
+    if (updateUserDto.password) {
+      updateData.password = await bcrypt.hash(updateUserDto.password, 10)
+    }
 
+    const updatedUser = await this.prisma.user.update({
+      where: { id: userId },
+      data: updateData
+    })
+
+    return {
+      id: updatedUser.id,
+      email: updatedUser.email,
+      name: updatedUser.name,
+    }
+  }
+
+  async deleteUser(userId: number, password: string): Promise<void> {
+    const user = await this.prisma.user.findUnique({
+      where: { id: userId }
+    })
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+
+    if (!user && isPasswordValid) {
+      throw new CustomException(EXCEPTION_STATUS.USER.INVALID_PASSWORD);
+    }
+
+    await this.prisma.user.delete({
+      where: { id: userId }
+    })
   }
 }
