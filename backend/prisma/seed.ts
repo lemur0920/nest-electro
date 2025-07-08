@@ -135,7 +135,6 @@ async function main() {
     data: [
       // 마우스
       {
-        id: 1,
         categoryId: 1,
         name: '로지텍 G Pro X Superlight',
         price: 169000,
@@ -144,13 +143,12 @@ async function main() {
         company: 'Logitech',
         isSale: true,
         image: 'logitech_g_pro_x_superlight.jpg',
-        releaseDate: new Date('2023-08-15'),
+        releasedAt: new Date('2023-08-15'),
         createdAt: new Date(),
         updatedAt: new Date(),
         deletedAt: null
       },
       {
-        id: 2,
         categoryId: 1,
         name: '레이저 DeathAdder V3',
         price: 89000,
@@ -159,13 +157,12 @@ async function main() {
         company: 'Razer',
         isSale: true,
         image: 'razer_deathadder_v3.jpg',
-        releaseDate: new Date('2023-06-20'),
+        releasedAt: new Date('2023-06-20'),
         createdAt: new Date(),
         updatedAt: new Date(),
         deletedAt: null
       },
       {
-        id: 3,
         categoryId: 1,
         name: 'SteelSeries Rival 650',
         price: 139000,
@@ -174,7 +171,7 @@ async function main() {
         company: 'SteelSeries',
         isSale: true,
         image: 'steelseries_rival_650.jpg',
-        releaseDate: new Date('2023-04-10'),
+        releasedAt: new Date('2023-04-10'),
         createdAt: new Date(),
         updatedAt: new Date(),
         deletedAt: null
@@ -182,7 +179,6 @@ async function main() {
 
       // 키보드
       {
-        id: 4,
         categoryId: 2,
         name: '로지텍 G915 TKL',
         price: 259000,
@@ -191,13 +187,12 @@ async function main() {
         company: 'Logitech',
         isSale: true,
         image: 'logitech_g915_tkl.jpg',
-        releaseDate: new Date('2023-05-25'),
+        releasedAt: new Date('2023-05-25'),
         createdAt: new Date(),
         updatedAt: new Date(),
         deletedAt: null
       },
       {
-        id: 5,
         categoryId: 2,
         name: '체리 MX Keys',
         price: 149000,
@@ -206,13 +201,12 @@ async function main() {
         company: 'Cherry',
         isSale: true,
         image: 'cherry_mx_keys.jpg',
-        releaseDate: new Date('2023-03-18'),
+        releasedAt: new Date('2023-03-18'),
         createdAt: new Date(),
         updatedAt: new Date(),
         deletedAt: null
       },
       {
-        id: 6,
         categoryId: 2,
         name: '레이저 BlackWidow V4 Pro',
         price: 329000,
@@ -221,7 +215,7 @@ async function main() {
         company: 'Razer',
         isSale: true,
         image: 'razer_blackwidow_v4_pro.jpg',
-        releaseDate: new Date('2023-09-05'),
+        releasedAt: new Date('2023-09-05'),
         createdAt: new Date(),
         updatedAt: new Date(),
         deletedAt: null
@@ -229,7 +223,6 @@ async function main() {
 
       // 헤드셋/이어폰
       {
-        id: 7,
         categoryId: 3,
         name: 'SteelSeries Arctis 7P+',
         price: 189000,
@@ -238,13 +231,12 @@ async function main() {
         company: 'SteelSeries',
         isSale: true,
         image: 'steelseries_arctis_7p_plus.jpg',
-        releaseDate: new Date('2023-07-12'),
+        releasedAt: new Date('2023-07-12'),
         createdAt: new Date(),
         updatedAt: new Date(),
         deletedAt: null
       },
       {
-        id: 8,
         categoryId: 3,
         name: '젠하이저 HD 660S',
         price: 599000,
@@ -253,13 +245,12 @@ async function main() {
         company: 'Sennheiser',
         isSale: true,
         image: 'sennheiser_hd_660s.jpg',
-        releaseDate: new Date('2023-02-28'),
+        releasedAt: new Date('2023-02-28'),
         createdAt: new Date(),
         updatedAt: new Date(),
         deletedAt: null
       },
       {
-        id: 9,
         categoryId: 3,
         name: 'HyperX Cloud Alpha',
         price: 99000,
@@ -268,7 +259,7 @@ async function main() {
         company: 'HyperX',
         isSale: true,
         image: 'hyperx_cloud_alpha.jpg',
-        releaseDate: new Date('2023-01-15'),
+        releasedAt: new Date('2023-01-15'),
         createdAt: new Date(),
         updatedAt: new Date(),
         deletedAt: null
@@ -276,7 +267,6 @@ async function main() {
 
       // 마우스패드
       {
-        id: 10,
         categoryId: 4,
         name: 'SteelSeries QcK Heavy',
         price: 39000,
@@ -285,13 +275,12 @@ async function main() {
         company: 'SteelSeries',
         isSale: true,
         image: 'steelseries_qck_heavy.jpg',
-        releaseDate: new Date('2023-01-01'),
+        releasedAt: new Date('2023-01-01'),
         createdAt: new Date(),
         updatedAt: new Date(),
         deletedAt: null
       },
       {
-        id: 11,
         categoryId: 4,
         name: '로지텍 G640',
         price: 45000,
@@ -300,7 +289,7 @@ async function main() {
         company: 'Logitech',
         isSale: true,
         image: 'logitech_g640.jpg',
-        releaseDate: new Date('2023-02-14'),
+        releasedAt: new Date('2023-02-14'),
         createdAt: new Date(),
         updatedAt: new Date(),
         deletedAt: null
@@ -308,7 +297,6 @@ async function main() {
 
       // 모니터
       {
-        id: 12,
         categoryId: 5,
         name: 'ASUS ROG Swift PG279QM',
         price: 899000,
@@ -317,13 +305,12 @@ async function main() {
         company: 'ASUS',
         isSale: true,
         image: 'asus_rog_swift_pg279qm.jpg',
-        releaseDate: new Date('2023-06-30'),
+        releasedAt: new Date('2023-06-30'),
         createdAt: new Date(),
         updatedAt: new Date(),
         deletedAt: null
       },
       {
-        id: 13,
         categoryId: 5,
         name: 'LG 27GP850-B',
         price: 449000,
@@ -332,7 +319,7 @@ async function main() {
         company: 'LG',
         isSale: true,
         image: 'lg_27gp850_b.jpg',
-        releaseDate: new Date('2023-04-22'),
+        releasedAt: new Date('2023-04-22'),
         createdAt: new Date(),
         updatedAt: new Date(),
         deletedAt: null
@@ -340,7 +327,6 @@ async function main() {
 
       // 웹캠
       {
-        id: 14,
         categoryId: 6,
         name: '로지텍 BRIO 4K',
         price: 259000,
@@ -349,13 +335,12 @@ async function main() {
         company: 'Logitech',
         isSale: true,
         image: 'logitech_brio_4k.jpg',
-        releaseDate: new Date('2023-03-08'),
+        releasedAt: new Date('2023-03-08'),
         createdAt: new Date(),
         updatedAt: new Date(),
         deletedAt: null
       },
       {
-        id: 15,
         categoryId: 6,
         name: '레이저 Kiyo Pro',
         price: 199000,
@@ -364,7 +349,7 @@ async function main() {
         company: 'Razer',
         isSale: true,
         image: 'razer_kiyo_pro.jpg',
-        releaseDate: new Date('2023-05-17'),
+        releasedAt: new Date('2023-05-17'),
         createdAt: new Date(),
         updatedAt: new Date(),
         deletedAt: null
@@ -372,7 +357,6 @@ async function main() {
 
       // 스피커
       {
-        id: 16,
         categoryId: 7,
         name: '로지텍 G560',
         price: 229000,
@@ -381,7 +365,7 @@ async function main() {
         company: 'Logitech',
         isSale: true,
         image: 'logitech_g560.jpg',
-        releaseDate: new Date('2023-08-03'),
+        releasedAt: new Date('2023-08-03'),
         createdAt: new Date(),
         updatedAt: new Date(),
         deletedAt: null
@@ -389,7 +373,6 @@ async function main() {
 
       // 케이블/어댑터
       {
-        id: 17,
         categoryId: 8,
         name: 'UGREEN USB-C 허브',
         price: 59000,
@@ -398,13 +381,12 @@ async function main() {
         company: 'UGREEN',
         isSale: true,
         image: 'ugreen_usb_c_hub.jpg',
-        releaseDate: new Date('2023-01-20'),
+        releasedAt: new Date('2023-01-20'),
         createdAt: new Date(),
         updatedAt: new Date(),
         deletedAt: null
       },
       {
-        id: 18,
         categoryId: 8,
         name: 'Anker PowerLine III USB-C',
         price: 25000,
@@ -413,7 +395,7 @@ async function main() {
         company: 'Anker',
         isSale: true,
         image: 'anker_powerline_iii_usbc.jpg',
-        releaseDate: new Date('2023-02-05'),
+        releasedAt: new Date('2023-02-05'),
         createdAt: new Date(),
         updatedAt: new Date(),
         deletedAt: null

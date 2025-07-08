@@ -56,13 +56,13 @@ model Product {
   id            Int            @id @default(autoincrement())
   categoryId    Int            @map("category_id")
   name          String
-  price         Decimal        @db.Decimal(10, 2)
-  description   String         @db.VarChar(1000)
+  price         Float        
+  description   String?         @db.VarChar(1000)
   stock         Int            @default(0)
   company       String
   isSale        Boolean        @default(true) @map("is_sale")
   image         String?        @db.VarChar(255)
-  releaseDate   DateTime       @map("release_date")
+  releasedAt   DateTime?       @map("released_at")
   
   createdAt     DateTime       @default(now()) @map("created_at")
   updatedAt     DateTime       @default(now()) @updatedAt @map("updated_at")
@@ -123,7 +123,7 @@ model CartItem {
   productId  Int
   categoryId Int
   quantity   Int
-  price      Decimal  @db.Decimal(10, 2)
+  price      Float  
   
   createdAt  DateTime @default(now()) @map("created_at")
   updatedAt  DateTime @default(now()) @updatedAt @map("updated_at")

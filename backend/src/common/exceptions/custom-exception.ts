@@ -23,27 +23,32 @@ export const EXCEPTION_STATUS = {
       message: '로그인이 필요합니다.',
       statusCode: 401
     }
-
-    
   },
   USER: {
     NOT_FOUND: {
-      errorCode: 10002,
+      errorCode: 20001,
       message: '해당 유저가 존재하지 않습니다.',
       statusCode: 404,
     },
     EMAIL_CONFLICT: {
-      errorCode: 10003,
+      errorCode: 20002,
       message: '이미 존재하는 유저입니다.',
       statusCode: 409,
     },
-      INVALID_PASSWORD: {
-        errorCode: 10004,
-        message: '비밀번호를 확인해주세요.',
-        statusCode: 400
-      },
-      
+    INVALID_PASSWORD: {
+      errorCode: 20003,
+      message: '비밀번호를 확인해주세요.',
+      statusCode: 400
+    },
   },
+  PRODUCT: {
+    NOT_FOUND: {
+      errorCode: 30001,
+      message: '해당 제품이 존재하지 않습니다.',
+      statusCode: 404
+    }
+  }
+
 }
 
 export class CustomException extends HttpException {
