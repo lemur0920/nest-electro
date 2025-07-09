@@ -82,7 +82,7 @@ model Category {
 
 model Order {
   id            Int            @id @default(autoincrement())
-  userId        Int            @map("user_id")
+  userId        Int?            @map("user_id")
   status        OrderStatus    @default(PENDING)
   createdAt     DateTime       @default(now()) @map("created_at")
   updatedAt     DateTime       @default(now()) @updatedAt @map("updated_at")

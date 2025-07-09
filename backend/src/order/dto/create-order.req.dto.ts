@@ -15,3 +15,7 @@ export class CreateOrderProductDto {
   quantity: number;
 }
 
+export class CreateOrderDto {
+  products: CreateOrderProductDto[];
+}
+

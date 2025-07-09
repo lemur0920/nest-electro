@@ -8,7 +8,7 @@ import { ProductService } from './product.service';
 import { UpdateProductDto } from './dto/update-product.req.dto';
 
 @ApiTags('products')
-@Controller('product')
+@Controller('products')
 export class ProductController {
   private readonly logger = new Logger(ProductController.name);
   constructor(private readonly productService: ProductService) {};
