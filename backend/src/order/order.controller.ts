@@ -1,6 +1,6 @@
 import { Body, Controller, Logger, Post, Session } from '@nestjs/common';
 import { OrderService } from './order.service';
-import { CreateOrderDto } from './dto/create-order.req.dto';
+import { CreateOrderDto, CreateOrderProductDto } from './dto/create-order.req.dto';
 import { OrderResponseDto } from './dto/order.res.dto';
 import { ResponseDto } from 'src/common/dto/response.dto';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
@@ -15,10 +15,11 @@ export class OrderController {
   @Post()
   async createOrder(
     @Session() session: Record<string, any>,
-    @Body() createOrderDto: CreateOrderDto
+    @Body() createOrderDto: CreateOrderDto,
+    @Body('products') products: CreateOrderProductDto[]
   ):Promise<ResponseDto<OrderResponseDto>> {
     const userId = session.userId ?? null;
-    const newOrder = await this.orderService.createOrder(userId, createOrderDto);
+    const newOrder = await this.orderService.createOrder(userId, createOrderDto, products);
     return ResponseDto.success({
       message: '주문 등록 성공',
       data: newOrder

@@ -15,12 +15,17 @@ export class OrderService {
   constructor(private readonly prisma: PrismaService) {};
 
   // 주문 생성
-  async createOrder(userId: number, dto: CreateOrderDto): Promise<OrderResponseDto> {
+  async createOrder(
+    userId: number,
+    orderDto: CreateOrderDto,
+    products: CreateOrderProductDto[]
+  ): Promise<OrderResponseDto> {
     const order = await this.prisma.order.create({
       data: {
-        userId: userId,
+        userId,
+        ...orderDto,
         orderProducts: {
-          create: dto.products.map((p) => ({
+          create: products.map((p) => ({
             userId: userId,
             productId: p.productId,
             categoryId: p.categoryId,
