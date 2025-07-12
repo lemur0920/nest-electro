@@ -82,7 +82,7 @@ model Category {
 
 model Order {
   id            Int            @id @default(autoincrement())
-  trackingToken String? @unique
+  trackingToken String? @unique @map("tracking_token")
   userId        Int?            @map("user_id")
   status        OrderStatus    @default(PENDING)
   createdAt     DateTime       @default(now()) @map("created_at")
@@ -123,7 +123,6 @@ model Cart {
 model CartItem {
   id         Int      @id @default(autoincrement())
   cartId     Int
-  userId     Int
   productId  Int
   categoryId Int
   quantity   Int
@@ -133,6 +132,8 @@ model CartItem {
   updatedAt  DateTime @default(now()) @updatedAt @map("updated_at")
   deletedAt DateTime?
 
+
+  @@unique([cartId, productId])
   cart       Cart     @relation(fields: [cartId], references: [id])
   product    Product  @relation(fields: [productId], references: [id])
 }

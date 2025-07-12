@@ -22,6 +22,11 @@ export const EXCEPTION_STATUS = {
       errorCode: 10004,
       message: '로그인이 필요합니다.',
       statusCode: 401
+    },
+    SESSION_TOKEN_MISSING_ERROR: {
+      errorCode: 10005,
+      message: '회원 ID 또는 세션 토큰이 필요합니다.',
+      statusCode: 401
     }
   },
   USER: {
