@@ -32,7 +32,7 @@ async function bootstrap() {
       transform: true, // 요청 데이터를 DTO 클래스 인스턴스로 자동 변환
       whitelist: true, // DTO에 정의되지 않은 속성은 자동으로 제거
       forbidNonWhitelisted: true, // DTO에 정의되지 않은 속성이 있으면 에러 발생
-      disableErrorMessages: false // production시에는 true로 전환
+      disableErrorMessages: false, // production시에는 true로 전환
     })
   );
   // ClassSerializerInterceptor 전역 설정 추가

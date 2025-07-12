@@ -407,19 +407,16 @@ async function main() {
   await prisma.cart.createMany({
     data: [
       {
-        id: 1,
         userId: 1,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        id: 2,
         userId: 2,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        id: 3,
         userId: 3,
         createdAt: new Date(),
         updatedAt: new Date()
@@ -497,103 +494,110 @@ async function main() {
   });
 
   // 주문 생성
-  await prisma.order.createMany({
-    data: [
-      {
-        id: 1,
-        userId: 1,
-        status: 'COMPLETED',
-        createdAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000), // 7일 전
-        updatedAt: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000), // 5일 전
-        deletedAt: null
-      },
-      {
-        id: 2,
-        userId: 2,
-        status: 'PROCESSING',
-        createdAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000), // 3일 전
-        updatedAt: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000), // 1일 전
-        deletedAt: null
-      },
-      {
-        id: 3,
-        userId: 4,
-        status: 'PENDING',
-        createdAt: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000), // 1일 전
-        updatedAt: new Date(),
-        deletedAt: null
-      },
-      {
-        id: 4,
-        userId: 5,
-        status: 'CANCELLED',
-        createdAt: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000), // 10일 전
-        updatedAt: new Date(Date.now() - 8 * 24 * 60 * 60 * 1000), // 8일 전
-        deletedAt: null
-      }
-    ]
-  });
+const order1 = await prisma.order.create({
+  data: {
+    userId: 1,
+    status: 'COMPLETED',
+    totalPrice: 278000, // totalPrice는 Int
+    createdAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000),
+    updatedAt: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000),
+    deletedAt: null,
+  }
+});
 
-  // 주문 상품 생성
-  await prisma.orderProduct.createMany({
-    data: [
-      {
-        userId: 1,
-        orderId: 1,
-        productId: 2, // 레이저 DeathAdder V3
-        categoryId: 1,
-        quantity: 1,
-        shippingStatus: 'DELIVERED',
-        createdAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000),
-        updatedAt: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000),
-        deletedAt: null
-      },
-      {
-        userId: 1,
-        orderId: 1,
-        productId: 7, // SteelSeries Arctis 7P+
-        categoryId: 3,
-        quantity: 1,
-        shippingStatus: 'DELIVERED',
-        createdAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000),
-        updatedAt: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000),
-        deletedAt: null
-      },
-      {
-        userId: 2,
-        orderId: 2,
-        productId: 4, // 로지텍 G915 TKL
-        categoryId: 2,
-        quantity: 1,
-        shippingStatus: 'SHIPPED',
-        createdAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000),
-        updatedAt: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000),
-        deletedAt: null
-      },
-      {
-        userId: 4,
-        orderId: 3,
-        productId: 14, // 로지텍 BRIO 4K
-        categoryId: 6,
-        quantity: 1,
-        shippingStatus: 'PENDING',
-        createdAt: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000),
-        updatedAt: new Date(),
-        deletedAt: null
-      },
-      {
-        userId: 5,
-        orderId: 4,
-        productId: 12, // ASUS ROG Swift PG279QM
-        categoryId: 5,
-        quantity: 1,
-        shippingStatus: 'PENDING',
-        createdAt: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000),
-        updatedAt: new Date(Date.now() - 8 * 24 * 60 * 60 * 1000),
-        deletedAt: null
-      }
-    ]
-  });
+const order2 = await prisma.order.create({
+  data: {
+    userId: 2,
+    status: 'PROCESSING',
+    totalPrice: 259000,
+    createdAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000),
+    updatedAt: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000),
+    deletedAt: null
+  }
+});
+
+const order3 = await prisma.order.create({
+  data: {
+    userId: 4,
+    status: 'PENDING',
+    totalPrice: 259000,
+    createdAt: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000),
+    updatedAt: new Date(),
+    deletedAt: null
+  }
+});
+
+const order4 = await prisma.order.create({
+  data: {
+    userId: 5,
+    status: 'CANCELLED',
+    totalPrice: 899000,
+    createdAt: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000),
+    updatedAt: new Date(Date.now() - 8 * 24 * 60 * 60 * 1000),
+    deletedAt: null
+  }
+});
+
+// 주문 상품 생성
+await prisma.orderProduct.createMany({
+  data: [
+    {
+      orderId: 1,
+      productId: 2,
+      priceAtOrder: 89000, // priceAtOrder는 Int
+      productNameAtOrder: '레이저 DeathAdder V3', // productNameAtOrder는 String
+      shippingStatus: 'DELIVERED',
+      quantity: 1,
+      createdAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000),
+      updatedAt: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000),
+      deletedAt: null
+    },
+    {
+      orderId: 1,
+      productId: 7,
+      priceAtOrder: 189000,
+      productNameAtOrder: 'SteelSeries Arctis 7P+',
+      shippingStatus: 'DELIVERED',
+      quantity: 1,
+      createdAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000),
+      updatedAt: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000),
+      deletedAt: null
+    },
+    {
+      orderId: 2,
+      productId: 4,
+      priceAtOrder: 259000,
+      productNameAtOrder: '로지텍 G915 TKL',
+      shippingStatus: 'SHIPPED',
+      quantity: 1,
+      createdAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000),
+      updatedAt: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000),
+      deletedAt: null
+    },
+    {
+      orderId: 3,
+      productId: 14,
+      priceAtOrder: 259000,
+      productNameAtOrder: '로지텍 BRIO 4K',
+      shippingStatus: 'PENDING',
+      quantity: 1,
+      createdAt: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000),
+      updatedAt: new Date(),
+      deletedAt: null
+    },
+    {
+      orderId: 4,
+      productId: 12,
+      priceAtOrder: 899000,
+      productNameAtOrder: 'ASUS ROG Swift PG279QM',
+      shippingStatus: 'PENDING',
+      quantity: 1,
+      createdAt: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000),
+      updatedAt: new Date(Date.now() - 8 * 24 * 60 * 60 * 1000),
+      deletedAt: null
+    }
+  ]
+});
 
   // 리뷰 생성
   await prisma.review.createMany({

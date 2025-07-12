@@ -13,8 +13,8 @@ model User {
   password  String
   name      String
   addresses Address[]
-  cart      Cart?
   reviews   Review[]
+  cart Cart?
 
   createdAt     DateTime @default(now())      @map("created_at")
   updatedAt     DateTime @default(now()) @updatedAt @map("updated_at")
@@ -82,21 +82,23 @@ model Category {
 
 model Order {
   id            Int            @id @default(autoincrement())
+  trackingToken String? @unique
   userId        Int?            @map("user_id")
   status        OrderStatus    @default(PENDING)
   createdAt     DateTime       @default(now()) @map("created_at")
   updatedAt     DateTime       @default(now()) @updatedAt @map("updated_at")
   deletedAt     DateTime?      @map("deleted_at")
+  totalPrice  Int @map("total_price")
   orderProducts OrderProduct[]
 }
 
 model OrderProduct {
   id             Int            @id @default(autoincrement())
-  userId         Int            @map("user_id")
   orderId        Int            @map("order_id")
   productId      Int            @map("product_id")
-  categoryId     Int            @map("category_id")
   quantity       Int
+  priceAtOrder  Int @map("price_at_order")
+  productNameAtOrder String @map("product_name_at_order")
   shippingStatus ShippingStatus @default(PENDING) @map("shipping_status")
   createdAt      DateTime       @default(now()) @map("created_at")
   updatedAt      DateTime       @default(now()) @updatedAt @map("updated_at")
@@ -108,12 +110,14 @@ model OrderProduct {
 
 model Cart {
   id        Int        @id @default(autoincrement())
-  userId    Int        @unique @map("user_id")
+  userId    Int?        @unique @map("user_id")
+  sessionToken String? @unique @map("session_token")
   createdAt DateTime   @default(now()) @map("created_at")
   updatedAt DateTime   @default(now()) @updatedAt @map("updated_at")
   deletedAt DateTime?  @map("deleted_at")
-  user      User       @relation(fields: [userId], references: [id])
   cartItems CartItem[]
+
+  user  User? @relation(fields: [userId], references: [id])
 }
 
 model CartItem {
@@ -127,6 +131,7 @@ model CartItem {
   
   createdAt  DateTime @default(now()) @map("created_at")
   updatedAt  DateTime @default(now()) @updatedAt @map("updated_at")
+  deletedAt DateTime?
 
   cart       Cart     @relation(fields: [cartId], references: [id])
   product    Product  @relation(fields: [productId], references: [id])
