@@ -4,8 +4,10 @@ import { UserResponseDto } from './dto/user.res.dto';
 import { CreateUserDto } from './dto/create-user.req.dto.ts';
 import { UpdateUserDto } from './dto/update-user.req.dto';
 import * as bcrypt from 'bcrypt';
-import { CustomException, EXCEPTION_STATUS } from 'src/common/exceptions/custom-exception';
 import { User } from '@prisma/client';
+import { CustomException, EXCEPTION_STATUS } from 'src/common/exceptions/custom-exception';
+import { plainToInstance } from 'class-transformer';
+import { toDto } from 'src/common/utils/to-dto.util';
 
 @Injectable()
 export class UserService {
@@ -25,11 +27,14 @@ export class UserService {
         }
       })
       
-      return {
-        id: newUser.id,
-        email: newUser.email,
-        name: newUser.name
-      };
+      // return {
+        // id: newUser.id,
+        // email: newUser.email,
+        // name: newUser.name
+      // };
+
+      return toDto(UserResponseDto, newUser); // 헬퍼 함수 사용
+      
     } catch (error) {
       // Prisma unique constraint violated
       if (error.code === 'P2002') {

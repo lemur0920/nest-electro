@@ -16,7 +16,7 @@ export class PrismaService
     }
 
     async createUser(userCreateDto: CreateUserDto) {
-      return this.user.create({
+    return this.user.create({
         data: { 
           email: userCreateDto.email,
           name: userCreateDto.name,
