@@ -1,3 +1,4 @@
+import { ApiProperty } from "@nestjs/swagger";
 import { Expose, Type } from "class-transformer";
 
 export class CartItemResponseDto {
@@ -27,10 +28,10 @@ export class CartItemResponseDto {
 }
 
 export class CartResponseDto {
+  @Expose()
   @Type(() => CartItemResponseDto)
   cartItems: CartItemResponseDto[]
 
-  get getTotalPrice(): number {
-    return this.cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  }
+  @ApiProperty()
+  totalPrice: number;
 }

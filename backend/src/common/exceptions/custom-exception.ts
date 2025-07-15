@@ -52,6 +52,20 @@ export const EXCEPTION_STATUS = {
       message: '해당 제품이 존재하지 않습니다.',
       statusCode: 404
     }
+  },
+  CART: {
+    NOT_FOUND: {
+      errorCode: 40001,
+      message: '장바구니가 존재하지 않습니다.',
+      statusCode: 404
+    }
+  },
+  REVIEW: {
+    NOT_FOUND: {
+      errorCode: 50001,
+      message: '리뷰가 존재하지 않습니다.',
+      statusCode: 404
+    }
   }
 
 }

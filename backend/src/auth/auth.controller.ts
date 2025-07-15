@@ -2,6 +2,8 @@ import { Body, Controller, HttpCode, Post, Session } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { LoginDto } from './dto/login.req.dto';
 import { CartService } from 'src/cart/cart.service';
+import { ResponseDto } from 'src/common/dto/response.dto';
+import { ApiOperation } from '@nestjs/swagger';
 
 @Controller('auth')
 export class AuthController {
@@ -28,5 +30,13 @@ export class AuthController {
       session.sessionToken = null;
     }
     return user;
+  }
+
+  @Post('logout')
+  @ApiOperation({ summary: '로그아웃' })
+  async logout(@Session() session: Record<string, any>): Promise<ResponseDto<void>> {
+    session.userId = undefined; // 세션에서 사용자 정보 제거
+
+    return ResponseDto.success({message:'로그아웃 성공'});
   }
 }

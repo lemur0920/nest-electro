@@ -90,6 +90,10 @@ model Order {
   deletedAt     DateTime?      @map("deleted_at")
   totalPrice  Int @map("total_price")
   orderProducts OrderProduct[]
+
+  @@index([userId], name: "idx_order_userId")
+  @@index([trackingToken], name: "idx_order_trackingToken")
+  @@index([status], name: "idx_order_status")
 }
 
 model OrderProduct {

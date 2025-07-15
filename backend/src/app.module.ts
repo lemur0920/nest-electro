@@ -9,9 +9,15 @@ import { OrderModule } from './order/order.module';
 import { ReviewModule } from './review/review.module';
 import { PrismaModule } from 'prisma/prisma.module';
 import { AuthModule } from './auth/auth.module';
-
+import { GraphQLModule } from '@nestjs/graphql';
 @Module({
   imports: [
+    GraphQLModule.forRoot({
+      typePaths: ['./**/*.graphql'], // SDL 파일 경로
+      resolvers: { use: 'introspection' },
+      playground: true,
+      debug: true,
+  }),
     ConfigModule.forRoot({
       envFilePath: '.env',
       isGlobal: true
