@@ -84,11 +84,7 @@ export class UserService {
       data: updateData
     })
 
-    return {
-      id: updatedUser.id,
-      email: updatedUser.email,
-      name: updatedUser.name,
-    }
+    return toDto(UserResponseDto, updatedUser);
   }
 
   async deleteUser(userId: number, password: string): Promise<void> {

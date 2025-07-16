@@ -29,8 +29,6 @@ export class OrderService {
   ): Promise<OrderResponseDto> {
     const productIds = createOrderDto.products.map(p => p.productId);
     const trackingToken = userId ? null : this.generateTrackingToken();
-
-
     const products = await this.prisma.product.findMany({
       where: {
         id: {
